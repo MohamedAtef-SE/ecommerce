@@ -1,0 +1,1 @@
+import{Lb as a,Qb as r,fa as o,ub as n,vb as i}from"./chunk-6KJ26BVU.js";var m=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-categories"]],standalone:!0,features:[r],decls:2,vars:0,template:function(t,p){t&1&&(n(0,"p"),a(1,"categories works!"),i())}})}}return e})();export{m as CategoriesComponent};

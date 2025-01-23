@@ -3,12 +3,12 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@ang
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideRouter, RouterModule, withViewTransitions } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideToastr } from 'ngx-toastr';
-import { routes } from './app.routes';
+import { appRoutes, routes } from './app.routes';
 import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor';
 import { headerInterceptor } from './core/interceptors/header/header.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading.interceptor';
@@ -32,6 +32,7 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     importProvidersFrom( 
       NgxSpinnerModule,
+      RouterModule.forRoot(routes,{useHash: true}),
       // provide files to project
       TranslateModule.forRoot({
         defaultLanguage: 'en',

@@ -1,1 +1,0 @@
-import{Ib as a,Nb as r,da as o,rb as n,sb as i}from"./chunk-YRFWHIN5.js";var m=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-categories"]],standalone:!0,features:[r],decls:2,vars:0,template:function(t,p){t&1&&(n(0,"p"),a(1,"categories works!"),i())}})}}return e})();export{m as CategoriesComponent};

@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Jb as a,Ob as r,ba as o,sb as n,tb as i}from"./chunk-RHIAHIG3.mjs";import"./chunk-VVCT4QZE.mjs";var m=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-categories"]],standalone:!0,features:[r],decls:2,vars:0,template:function(t,p){t&1&&(n(0,"p"),a(1,"categories works!"),i())}})}}return e})();export{m as CategoriesComponent};
