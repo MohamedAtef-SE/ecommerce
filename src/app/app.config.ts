@@ -32,7 +32,6 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     importProvidersFrom( 
       NgxSpinnerModule,
-      RouterModule.forRoot(routes,{useHash: true}),
       // provide files to project
       TranslateModule.forRoot({
         defaultLanguage: 'en',
