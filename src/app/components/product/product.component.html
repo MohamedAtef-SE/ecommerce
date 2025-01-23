@@ -1,0 +1,25 @@
+<div class="product p-3 position-relative">
+    @if(wishlistIDsAsString().includes(Product.id)){
+     <i (click)="removeFromWishlist(Product.id)" class="fa-solid fa-heart z-2 h4 d-block p-0 text-end cursor-pointer text-danger"></i>
+    }
+    @else{
+      <i (click)="addToWishlist(Product.id)" class="fa-regular fa-heart z-2 h4 d-block p-0 text-end cursor-pointer"></i>
+   }
+    <div class="position-relative">
+      <img [routerLink]="['/details',Product.id]" [src]="Product.imageCover" class="cursor-pointer w-100" [alt]="Product.title">
+    </div>
+      <div class="card-body">
+        <h6 class="card-text text-main">{{Product.category.name | uppercase}}</h6>
+        <h6 class="py-1 text-nowrap fw-bold">{{Product.title | termtext : ' ' : 2 }}</h6>
+        <div class="d-flex justify-content-between align-items-center">
+         <p class="text-muted">{{Product.brand.name}}</p>
+        </div>
+        <div class="d-flex pt-1 justify-content-between align-items-center w-100">
+          <p>{{Product.price | currency : 'GBP' }}</p>
+          <p> <i class="bi text-warning bi-star-fill"></i> {{Product.ratingsAverage}}</p>
+        </div>
+      </div>
+      <button (click)="addProductToCart(Product.id)" class="btn-main d-block m-auto">
+        {{'add to cart'| translate}}
+      </button>
+    </div>

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="login">
+        <img src="./assets/images/amazon-logo-transparent.png" width="100">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul [class.ms-auto]="SavedLang === 'en'" [class.me-auto]="SavedLang === 'ar'" class="navbar-nav px-3"> 
+            <li class="nav-item cursor-pointer">
+              <a class="nav-link"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li class="nav-item cursor-pointer">
+                <a class="nav-link"><i class="bi bi-facebook"></i></a>
+              </li>
+              <li class="nav-item cursor-pointer">
+                <a class="nav-link"><i class="bi bi-linkedin"></i></a>
+              </li>
+              <li class="nav-item cursor-pointer mx-1">
+               <a class="nav-link" routerLinkActive="active-link" routerLink="login">
+                {{'login'| translate}}
+              </a>
+              </li>
+              <li class="nav-item cursor-pointer mx-1">
+                <a class="nav-link" routerLinkActive="active-link" routerLink="register">
+                  {{'register' | translate}}
+                </a>
+               </li>
+               @if(SavedLang == 'en'){
+                <li>
+                  <button (click)="changeLang('ar')" class="btn btn-light fw-bolder p-1">AR</button>
+                </li>
+              }
+              @else if(SavedLang == 'ar') {
+                <li>
+                  <button (click)="changeLang('en')" class="btn btn-light fw-bolder p-1">EN</button>
+                </li>
+              }
+          </ul>
+      </div>
+    </div>
+  </nav>

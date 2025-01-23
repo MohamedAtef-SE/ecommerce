@@ -1,0 +1,23 @@
+<section class="container p-5 my-4 bg-body-tertiary rounded border shadow">
+@if(isCartFound()){
+   <div class="d-flex justify-content-between align-items-center">
+    <p class="text-end text-main fw-bolder h5">{{'total cost' | translate}} {{CartDetails().data.totalCartPrice | currency : 'GBP'}}</p>
+    <div>
+        <a [routerLink]="['/checkout',CartDetails().cartId]" class="btn btn-warning fw-bolder mx-3">
+            {{'checkout session' | translate}}
+        </a>
+        <button (click)="clearCart()" class="btn btn-secondary">
+            {{'clear cart' | translate}} <i class="bi bi-trash"></i>
+        </button>
+    </div>
+   </div>
+    @for(cartItem of CartDetails().data.products; track cartItem._id){
+       <app-cart-item [cartDetails]="CartDetails" [CartItem]="cartItem" ></app-cart-item>
+    }
+}
+@else {
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <p class="text-muted h2">{{'cart is empty' | translate}} <i class="bi bi-bag h1"></i> </p>
+    </div>
+}
+</section>

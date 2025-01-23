@@ -1,0 +1,111 @@
+<section class="container my-5">
+    <div class="row">
+        @for(address of FormGroups();track $index){
+            <div class="col-md-4">
+               <div class="border p-2 m-2 rounded">
+                <form [formGroup]="address" (ngSubmit)="savedAddressSubmit(address)">
+                    <div class="my-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input readonly formControlName="name" class="form-control bg-body-tertiary" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="details" class="form-label">Address Details</label>
+                        <input readonly formControlName="details" class="form-control bg-body-tertiary" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="phone"></label>
+                        <input readonly formControlName="phone" class="form-control bg-body-tertiary" placeholder="012 XXX XXX XX" type="tel">
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="city">City</label>
+                        <input readonly formControlName="city" class="form-control bg-body-tertiary" type="text">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button (click)="removeAddress(address.get('_id')?.value)" class="btn btn-secondary" type="button">Delete <i class="fa-solid fa-trash"></i></button>
+                        <button type="submit" class="btn d-block ms-auto my-3 btn-main">Submit</button>
+                    </div>
+                    </form>
+               </div>
+            </div>
+        }
+        <div class="col-md-4">
+            <div class="border p-2 m-2 rounded">
+                <form [formGroup]="NewAddressGroup" (ngSubmit)="addNewAddress()">
+                    <div class="my-2">
+                        <label for="name" class="form-label">Name</label>
+                        @if(NewAddressGroup.get('name')?.errors && NewAddressGroup.get('name')?.touched){
+                            <span class="text-danger mx-2 mt-2">Name Required</span>
+                        }
+                        <input id="name" formControlName="name" class="form-control" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="details" class="form-label">Address Details</label>
+                        @if(NewAddressGroup.get('details')?.errors && NewAddressGroup.get('details')?.touched){
+                            <span class="text-danger mx-2 mt-2">Address Required</span>
+                        }
+                        <input id="details" formControlName="details" class="form-control" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="phone"></label>
+                        @if(NewAddressGroup.get('phone')?.errors && NewAddressGroup.get('phone')?.touched){
+                            <span class="text-danger mx-2 mt-2">Phone Required</span>
+                        }
+                        <input id="phone" formControlName="phone" class="form-control" placeholder="012 XXX XXX XX" type="tel">
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="newCity">City</label>
+                        @if(NewAddressGroup.get('city')?.errors && NewAddressGroup.get('city')?.touched){
+                            <span class="text-danger mx-2 mt-2">City required</span>
+                        }
+                        <input formControlName="city" id="newCity" class="form-control" type="text">
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button [disabled]="NewAddressGroup.invalid" type="submit" class="btn d-block ms-auto my-3 btn btn-primary"><i class="fa-solid fa-plus-circle"></i> Add</button>
+                    </div>
+                    </form>
+            </div>  
+        </div>
+        <div class="col-md-4">
+            <div class="border p-2 m-2 rounded">
+                <form [formGroup]="ShippingAddressGroup" (ngSubmit)="checkoutSubmit()">
+                    <div class="my-2">
+                        <label for="name" class="form-label">Name</label>
+                        @if(ShippingAddressGroup.get('name')?.errors && ShippingAddressGroup.get('name')?.touched){
+                            <span class="text-danger mx-2 mt-2">Name Required</span>
+                        }
+                        <input id="name" formControlName="name" class="form-control" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="details" class="form-label">Address Details</label>
+                        @if(ShippingAddressGroup.get('details')?.errors && ShippingAddressGroup.get('details')?.touched){
+                            <span class="text-danger mx-2 mt-2">Address Required</span>
+                        }
+                        <input id="details" formControlName="details" class="form-control" type="text">
+                    </div>
+                    <div class="my-2">
+                        <label for="phone"></label>
+                        @if(ShippingAddressGroup.get('phone')?.errors && ShippingAddressGroup.get('phone')?.touched){
+                            <span class="text-danger mx-2 mt-2">Phone Required</span>
+                        }
+                        <input id="phone" formControlName="phone" class="form-control" placeholder="012 XXX XXX XX" type="tel">
+                       
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="city">City</label>
+                        @if(ShippingAddressGroup.get('city')?.errors && ShippingAddressGroup.get('city')?.touched){
+                            <span class="text-danger mx-2 mt-2">City required</span>
+                        }
+                        <input formControlName="city" class="form-control" type="text">
+                       
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button routerLink="home" class="btn btn-secondary">Cancel <i class="fa-solid fa-cancel"></i></button>
+                        <button [disabled]="ShippingAddressGroup.invalid" type="submit" class="btn d-block ms-auto my-3 btn-main">Submit</button>
+                    </div>
+                    </form>
+            </div>
+          
+        </div>
+    </div>
+
+</section>

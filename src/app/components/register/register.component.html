@@ -1,0 +1,92 @@
+<section class="bg-main-light p-5 shadow my-2 rounded-4 container my-5">
+<h1 class="h2 text-main">{{'register now' | translate}}:</h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+    <p [hidden]="msgError === undefined" class="alert alert-danger">{{msgError}}</p>
+    <div class="my-2">
+        <label for="name">{{'name' | translate}}</label>
+        <input 
+        [ngClass]="{
+            'is-valid': !registerForm.get('name')?.errors && registerForm.get('name')?.touched,
+            'is-invalid':registerForm.get('name')?.errors && registerForm.get('name')?.touched
+             }" formControlName="name" id="name" type="text" class="form-control">
+        @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched){
+            @if(registerForm.get('name')?.getError('required')){
+                <p class="text-danger">name is required</p>
+            }
+            @else if(registerForm.get('name')?.getError('minlength')){
+                <p class="text-danger">minimum length 3 chars</p>
+            }
+            @else if(registerForm.get('name')?.getError('maxlength')){
+                <p class="text-danger">maximum length 20 chars</p>
+            }
+        }
+    </div>
+    <div class="my-2">
+        <label for="email">{{'email' | translate}}</label>
+        <input [ngClass]="{
+            'is-valid': !registerForm.get('email')?.errors && registerForm.get('email')?.touched,
+            'is-invalid': registerForm.get('email')?.errors && registerForm.get('email')?.touched
+        }" formControlName="email" id="email" type="text" class="form-control">
+        @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched){
+            @if(registerForm.get('email')?.getError('required')){
+                <p class="text-danger">email is required</p>
+            }
+            @else if(registerForm.get('email')?.getError('email')){
+                <p class="text-danger">invalid email address</p>
+            }
+        }
+    </div>
+    <div class="my-2">
+        <label for="password">{{'password' | translate}}</label>
+        <input [ngClass]="{
+            'is-valid':!registerForm.get('password')?.errors && registerForm.get('password')?.touched,
+            'is-invalid': registerForm.get('password')?.errors && registerForm.get('password')?.touched}"
+            formControlName="password" id="password" type="password" class="form-control">
+        @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched){
+            @if(registerForm.get('password')?.getError('required')){
+                <p class="text-danger">password is required</p>
+            }
+            @else if(registerForm.get('password')?.getError('pattern')){
+                <p class="text-danger">minimum length 6 chars</p>
+            }
+        }
+    </div>
+    <div class="my-2">
+        <label for="rePassword">{{'re-password' | translate}}</label>
+        <input [ngClass]="{
+            'is-valid': !registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched,
+            'is-invalid': registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched}"
+             formControlName="rePassword" id="rePassword" type="password" class="form-control">
+       @if(registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched){
+        <p class="text-danger">Password Confirm is incorrect</p>
+       }
+    </div>
+    <div class="my-2">
+        <label for="phone">{{'phone' | translate}}</label>
+        <input [ngClass]="{
+            'is-valid': !registerForm.get('phone')?.errors && registerForm.get('phone')?.touched,
+            'is-invalid': registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+            }"
+         formControlName="phone" id="phone" type="tel" class="form-control">
+        @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+            @if(registerForm.get('phone')?.getError('required')){
+                <p class="text-danger">phone is required</p>
+            }
+            @else if(registerForm.get('phone')?.getError('pattern')){
+                <p class="text-danger">invalid egyptian phone number</p>
+            }
+        }
+    </div>
+   <div class="text-end">
+    <button [disabled]="registerForm.invalid" class="btn-main mt-3">
+        {{'register' | translate}}
+       @if(isLoading){
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+       }
+    </button>
+   </div>
+</form>
+</section>

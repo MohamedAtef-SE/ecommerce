@@ -1,0 +1,79 @@
+<nav class="navbar position-fixed z-2 w-100 navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid row">
+     <div class="col-3">
+      <div class="row justify-content-sm-center">
+        <div class="col-md-5">
+          <a class="navbar-brand" routerLink="home">
+            <img src="./assets/images/amazon-logo-transparent.png" width="100">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="col-md-7 px-1 p-0">
+          <p class="text-nowrap m-0 p-0 small fw-bolder text-capitalize">{{'welcome'| translate}}, {{UserName()}}</p>
+        </div>
+      </div>
+      
+     
+     </div>
+     <div class="col-5">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav d-flex align-items-center justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLinkActive="active-link" routerLink="home">
+              {{'home' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLinkActive="active-link" routerLink="allorders">
+              {{'orders' | translate}}
+            </a>
+          </li>
+        </ul>
+       </div>
+     </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul [class.ms-auto]="SavedLang == 'en'" [class.me-auto]="SavedLang == 'ar'" class="navbar-nav m-0 p-0 d-flex align-items-center"> 
+            <li class="nav-item cursor-pointer">
+              <a  class="nav-link cart position-relative" routerLinkActive="cart-active" routerLink="cart">
+                <span [hidden]="cartNumber() == 0" class="badge bg-dark text-warning position-absolute top-0 end-0">{{cartNumber()}}</span>
+                <i [class.text-main]="cartNumber() > 0" class="fa-solid fa-cart-shopping fa-2xl"></i>
+              </a>
+             </li>
+             <li class="nav-item cursor-pointer">
+              <a  class="nav-link wishlist position-relative" routerLinkActive="wishlist-active" routerLink="wishlist">
+                <i [class.wishlist-active]="wishNumber() > 0" class="fa-solid fa-heart fa-2xl"></i>
+                <span [hidden]="wishNumber() == 0" class="badge bg-dark text-warning position-absolute top-0 end-0">{{wishNumber()}}</span>
+              </a>
+             </li>
+              <li class="nav-item cursor-pointer">
+                <a class="nav-link"><i class="bi bi-instagram"></i></a>
+              </li>
+              <li class="nav-item cursor-pointer">
+                  <a class="nav-link"><i class="bi bi-facebook"></i></a>
+                </li>
+                <li class="nav-item cursor-pointer">
+                  <a class="nav-link"><i class="bi bi-linkedin"></i></a>
+                </li>
+                 <li class="nav-item cursor-pointer">
+                  <a (click)="signOut()" class="nav-link">{{'sign-out' | translate }}</a>
+                 </li>
+                 @if(SavedLang == 'en'){
+                  <li>
+                    <button (click)="changeLang('ar')" class="btn btn-light fw-bolder p-1">AR</button>
+                  </li>
+                }
+                @else if(SavedLang == 'ar') {
+                  <li>
+                    <button (click)="changeLang('en')" class="btn btn-light fw-bolder p-1">EN</button>
+                  </li>
+                }
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- to solve position-fixed issue -->
+  <p class="p-3"></p>

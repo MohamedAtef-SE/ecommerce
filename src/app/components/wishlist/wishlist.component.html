@@ -1,0 +1,29 @@
+<section class="container p-5 my-4 bg-body-tertiary rounded border shadow">
+@if(isWishlistFound()){
+    @for(wishItem of WishlistDetails().data; track wishItem._id){
+        <div class="row my-2 py-2 border rounded align-items-center justify-content-between">
+            <div class="col-md-2 position-relative">
+                <img [src]="wishItem.imageCover" class="w-100 rounded" [alt]="wishItem.title">
+            </div>
+            <div class="col-md-8">
+                <h6 class="text-main my-2">{{wishItem.category.name.toLowerCase() | translate}}</h6>
+                <h5 class="text-muted my-2">{{wishItem.title}}</h5>
+                <h6 class="text-muted fw-bolder">{{wishItem.brand.name.toLowerCase() | translate}}</h6>
+                <h5 class="my-2 fw-bolder">{{wishItem.price | currency : 'GBP'}}</h5>
+            </div>
+            <div class="col-md-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <button (click)="removeWishlistItem(wishItem.id)" class="btn p-3 small btn-secondary">
+                        <i class="fa-solid fa-heart-broken fa-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+@else {
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <p class="text-muted h2">{{'wishlist is empty' | translate}} <i class="fa-solid fa-heart-broken"></i> </p>
+    </div>
+}
+</section>

@@ -1,0 +1,22 @@
+<div class="row my-2 py-2 border rounded align-items-center justify-content-between">
+    <div class="col-md-2 position-relative">
+        <img [src]="CartItem.product.imageCover" class="w-100 rounded" [alt]="CartItem.product.title">
+    </div>
+    <div class="col-md-8">
+        <h6 class="text-main my-2">{{CartItem.product.category.name.toLowerCase() | translate}}</h6>
+        <h5 class="text-muted my-2">{{CartItem.product.title}}</h5>
+        <h6 class="text-muted fw-bolder">{{CartItem.product.brand.name.toLowerCase() | translate}}</h6>
+        <h5 class="my-2 fw-bolder">{{CartItem.price | currency : 'GBP'}}</h5>
+        <div class="d-flex justify-content-between align-items-center">
+            <button (click)="removeCartItem(CartItem.product.id)" class="btn my-2 small btn-secondary">
+                {{'remove' | translate}}
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-2 d-flex justify-content-between align-items-center">
+        <button (click)="increaseQuantity(CartItem.product.id,CartItem.count)" class="btn-main py-1 px-2">+</button>
+        <p class="p-0 fw-bold bg-white w-100 text-center m-0">{{CartItem.count}}</p>
+        <button (click)="decreaseQuantity(CartItem.product.id,CartItem.count)" [disabled]="CartItem.count == 1" class="btn-main py-1 px-2">-</button>
+    </div>
+</div>

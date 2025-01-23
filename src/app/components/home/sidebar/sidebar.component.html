@@ -1,0 +1,28 @@
+<section class="border min-vh-100 rounded m-2 p-4">
+<div class="py-2">
+    <h5 class="text-main fw-bolder">{{'categories' | translate}}</h5>
+    <div class="my-3">
+        <input (click)="getCutomProducts({category: 'all',page: 1})" id="allCat" name="category" type="radio">
+        <label class="mx-2" for="allCat">{{ 'all' | translate}}</label>
+    </div>
+@for(category of categories(); track $index){
+    <div class="my-3">
+        <input (click)="getCutomProducts({category: category.catId, page: 1})" [id]="category.catId" name="category" type="radio">
+        <label class="mx-2" [for]="category.catId">{{category.catName.toLowerCase() | translate}}</label>
+    </div>
+}
+</div>
+<div class="py-2">
+    <h5 class="text-main fw-bolder">{{'brands' | translate}}</h5>
+    <div class="my-3">
+        <input (click)="getCutomProducts({brand: 'all',page: 1})" id="allBrands" name="brand" type="radio">
+        <label class="mx-2" for="allBrands">{{ 'all' | translate}}</label>
+    </div>
+@for(brand of brands(); track brand.brandId){
+    <div class="my-3">
+        <input (click)="getCutomProducts({brand: brand.brandId, page: 1})" [id]="brand.brandId" name="brand" type="radio">
+        <label class="mx-2" [for]="brand.brandId">{{brand.brandName.toLowerCase()| translate}}</label>
+    </div>
+}
+</div>
+</section>

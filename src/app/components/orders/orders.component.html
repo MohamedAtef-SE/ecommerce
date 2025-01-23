@@ -1,0 +1,26 @@
+<section class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{'order no.' | translate}}</th>
+                <th>{{'created at' | translate}}</th>
+                <th>{{'status' | translate}}</th>
+                <th>{{'payment' | translate}}</th>
+                <th>{{'payment method' | translate}}</th>
+                <th>{{'total order' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(order of UserOrders();track order.id){
+           <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.createdAt | date }}</td>
+            <td>{{(order.isDelivered ? 'delivered':'preparing') | translate}}</td>
+            <td>{{(order.isPaid ? 'paid':'pending') | translate}}</td>
+            <td>{{order.paymentMethodType.toLowerCase() | translate}}</td>
+            <td>{{order.totalOrderPrice | currency : 'GBP'}}</td>
+           </tr>
+            }
+        </tbody>
+    </table>
+</section>

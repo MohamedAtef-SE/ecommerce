@@ -1,0 +1,33 @@
+@if(Product().description !== undefined){
+    <section class=" m-3 border rounded p-4">
+        <div class="row align-items-center m-2">
+            <div class="col-md-4">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        @for(imgSrc of Product().images; track $index){
+                            <img appProductImages [src]="imgSrc" class="w-100 d-block" [alt]="Product().title">
+                        }
+                    </div>
+                    <div class="col-md-10">
+                        <img [src]="ImageCover()" class="w-100" [alt]="Product().title">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="my-2 fw-bold">{{Product().title}}</h4>
+                    <h6 class="card-text my-2 text-muted">{{Product().category.name}}</h6>
+                    <p class="text-main my-2 fw-bold">{{Product().brand.name}}</p>
+                    <h6 class="my-2">{{Product().description}}</h6>
+                    <div class="pt-4 d-flex justify-content-between align-items-center w-100">
+                      <p>{{Product().price | currency : 'GBP' }}</p>
+                      <p> <i class="bi text-warning bi-star-fill"></i> {{Product().ratingsAverage}}</p>
+                    </div>
+                    <button (click)="addProductToCart(Product().id)" class="btn-main d-block ms-auto my-3">
+                        Add to cart
+                    </button>
+                  </div>
+            </div>
+        </div>
+        </section>
+}
