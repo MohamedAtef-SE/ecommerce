@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environments } from '../../environments/environments';
 import { IAddress } from '../../interfaces/Models';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,15 @@ export class AddressService {
 
 
   getUserAddress():Observable<any> {
-    return this._HttpClient.get(`${environments.baseURL}/api/v1/addresses`)
+    return this._HttpClient.get(`${environment.apiUrl}/api/v1/addresses`)
   }
 
   addUserAddress(address:IAddress): Observable<any>{
-    return this._HttpClient.post(`${environments.baseURL}/api/v1/addresses`,address)
+    return this._HttpClient.post(`${environment.apiUrl}/api/v1/addresses`,address)
   }
 
   removeUserAddress(addressId?:string):Observable<any>{
-    return this._HttpClient.delete(`${environments.baseURL}/api/v1/addresses/${addressId}`)
+    return this._HttpClient.delete(`${environment.apiUrl}/api/v1/addresses/${addressId}`)
   }
 
 }

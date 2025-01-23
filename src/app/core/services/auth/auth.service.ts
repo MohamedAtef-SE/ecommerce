@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environments } from '../../environments/environments';
-import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
-import { ILogin, IRegister, IUser, IUserData } from '../../interfaces/Models';
+import { jwtDecode } from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { ILogin, IRegister, IUserData } from '../../interfaces/Models';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,25 +19,25 @@ export class AuthService {
   setRegisterForm(data:IRegister):Observable<any>
   {
     // return Observable Object not promise like regular JS
-    return this._httpClient.post(`${environments.baseURL}/api/v1/auth/signup`,data);
+    return this._httpClient.post(`${environment.apiUrl}/api/v1/auth/signup`,data);
   }
 
   setLoginForm(data:ILogin) : Observable<any>
   {
-    return this._httpClient.post(`${environments.baseURL}/api/v1/auth/signin`,data);
+    return this._httpClient.post(`${environment.apiUrl}/api/v1/auth/signin`,data);
   }
 
 setVerifiyEmail(data:object):Observable<any>{
-  return this._httpClient.post(`${environments.baseURL}/api/v1/auth/forgotPasswords`,data);
+  return this._httpClient.post(`${environment.apiUrl}/api/v1/auth/forgotPasswords`,data);
 }
 
 
 setVerifiyCode(data:object):Observable<any>{
-  return this._httpClient.post(`${environments.baseURL}/api/v1/auth/verifyResetCode`,data);
+  return this._httpClient.post(`${environment.apiUrl}/api/v1/auth/verifyResetCode`,data);
 }
 
 resetUserPassword(data:object):Observable<any>{
-  return this._httpClient.put(`${environments.baseURL}/api/v1/auth/resetPassword`,data);
+  return this._httpClient.put(`${environment.apiUrl}/api/v1/auth/resetPassword`,data);
 }
 
   logout():void{

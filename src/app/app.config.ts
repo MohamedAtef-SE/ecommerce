@@ -8,7 +8,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideToastr } from 'ngx-toastr';
-import { appRoutes, routes } from './app.routes';
+import { routes } from './app.routes';
+import { envInterceptor } from './core/interceptors/env/env.Interceptor';
 import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor';
 import { headerInterceptor } from './core/interceptors/header/header.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading.interceptor';
@@ -25,14 +26,14 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     //importProvidersFrom(HttpClient),
     //OR use provideHttpClient() - recommended
-    provideHttpClient(withFetch(), withInterceptors([headerInterceptor,errorsInterceptor,loadingInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([headerInterceptor,errorsInterceptor,envInterceptor,loadingInterceptor])),
     //importProvidersFrom(BrowserAnimationsModule), for ngx owl-carousel
     //OR use provideAnimations() - recommended for ngx owl-carousel
     provideAnimations(), // for ngx owl-carousel
     provideToastr(),
     importProvidersFrom( 
       NgxSpinnerModule,
-      RouterModule.forRoot(routes,{useHash: true}),
+      RouterModule.forRoot(routes,{useHash: false}),
       // provide files to project
       TranslateModule.forRoot({
         defaultLanguage: 'en',

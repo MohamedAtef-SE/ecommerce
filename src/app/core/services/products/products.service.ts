@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environments } from '../../environments/environments';
-import { IFilter, IProduct } from '../../interfaces/Models';
+import { environment } from '../../../../environments/environment';
+import { IFilter } from '../../interfaces/Models';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,14 @@ NumberOfPages: WritableSignal<number> = signal(0);
 
 getProducts(queries?:IFilter): Observable<any>{
 
-  let url = `${environments.baseURL}/api/v1/products?limit=12&sort=title`;
+  let url = `${environment.apiUrl}/api/v1/products?limit=12&sort=title`;
   
   if(queries === null){
     return this._HttpClient.get(url);
   }
 
   if(queries?.sort !== undefined){
-    url =`${environments.baseURL}/api/v1/products?limit=12&sort=${queries.sort}`;
+    url =`${environment.apiUrl}/api/v1/products?limit=12&sort=${queries.sort}`;
   }
 
   if(queries?.page !== undefined){
@@ -44,7 +44,7 @@ getProducts(queries?:IFilter): Observable<any>{
 }
 
  getSpecificProductDetails(id: string): Observable<any>{
-  return this._HttpClient.get(`${environments.baseURL}/api/v1/products/${id}`);
+  return this._HttpClient.get(`${environment.apiUrl}/api/v1/products/${id}`);
  }
  
 }
